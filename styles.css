@@ -1,22 +1,48 @@
 :root {
-  /* variables */
-  --cg-black: rgb(30, 32, 32);
-  --cg-blue: rgb(162, 0, 255);
-  --cg-grey: rgb(169,169,169);
-  --cg-white: rgb(255, 255, 255);
+  /* Updated color variables for a more professional look */
+  --cg-black: rgb(34, 34, 34); /* Darker shade of black */
+  --cg-blue: rgb(45, 105, 185); /* Muted professional blue */
+  --cg-grey: rgb(232, 232, 232); /* Light grey for background */
+  --cg-white: rgb(255, 255, 255); /* Pure white */
 }
-
 html {
   height: 100%;
 }
 
+/* Keyframes for gradient animation */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 body {
-  background: var(--cg-grey);
+  background: linear-gradient(
+    45deg,
+    var(--cg-blue),
+    var(--cg-grey),
+    var(--cg-black)
+  );
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
   position: relative;
   min-height: 100vh;
   padding: 0;
   margin: 0;
   font-family: monospace;
+}
+
+.intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 /* CSS for navigation */
@@ -37,9 +63,6 @@ body {
   background-color: var(--cg-black);
   color: var(--cg-white);
   padding: 0px 0px;
-
-  /* Debug border */
-  /* border: solid red; */
 }
 
 .nav-list {
@@ -48,9 +71,6 @@ body {
   position: relative;
   right: 30px;
   list-style: none;
-
-  /* Debug border */
-  /* border: solid blue; */
 }
 
 .navbar a {
@@ -59,7 +79,6 @@ body {
   margin: 0 12px;
   text-decoration: none;
   letter-spacing: 2px;
-
   font-family: monospace;
 }
 
@@ -91,7 +110,6 @@ main {
 .page-title {
   display: flex;
   justify-content: center;
-  font-size: px;
   font-family: Georgia;
 }
 
@@ -102,16 +120,10 @@ main {
   flex-direction: row;
   max-width: 100%;
   margin: 1em 0 2em 0;
-
-  /* Debug border */
-  /* border: 2px solid blue; */
 }
 
 .item-link {
   width: 70%;
-
-  /* Debug border */
-  /* border: 2px solid red; */
 }
 
 .project-image {
@@ -120,9 +132,6 @@ main {
   height: 500px;
   flex-basis: 50px;
   flex-grow: 2;
-
-  /* Debug border */
-  /* border: 2px solid black; */
 }
 
 .project-details {
@@ -135,13 +144,9 @@ main {
   margin: 0px;
   line-height: 1.5;
   overflow: scroll;
-
   flex-direction: column;
   text-align: center;
   justify-content: center;
-
-  /* Debug border */
-  /* border: 2px solid green; */
 }
 
 .project-details a {
@@ -154,10 +159,6 @@ main {
 .project-details a:hover {
   color: var(--cg-blue);
   text-decoration: underline;
-}
-
-.project-details {
-  font-weight: lighter;
 }
 
 .project-name {
@@ -175,13 +176,11 @@ main {
   background-color: #f8f8f8;
   border: 1px solid #ccc;
   border-radius: 5px;
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 }
 
 .about-image img {
   max-width: 300px;
   border-radius: 3px;
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
 }
 
 .about-text {
@@ -205,12 +204,9 @@ main {
   background-color: var(--cg-black);
   border: none;
   color: var(--cg-white);
-
   font-family: monospace;
-
   padding: 5px 7px;
   text-align: center;
-
   border-radius: 2px;
 }
 

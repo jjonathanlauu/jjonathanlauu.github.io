@@ -3,13 +3,23 @@
   <head>
     <title>My Personal Website</title>
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      .resume-image {
+        text-align: center; /* Centers the content horizontally */
+        margin: 20px 0; /* Adds some space above and below the image */
+      }
+
+      .resume-image img {
+        width: 50%;
+        height: auto;
+      }
+    </style>
   </head>
   <body>
     <nav class="navbar">
       <h1><a href="index.html">JL's website</a></h1>
       <ul class="nav-list">
         <li><a href="index.html">Home</a></li>
-        <li><a href="blog.html">Blog</a></li>
         <li><a href="portfolio.html">Portfolio</a></li>
         <li><a href="resume.html">Resume</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -18,71 +28,12 @@
     <main>
       <h1 class="page-title">Resume</h1>
 
-      <div class="resume">
-        <section class="section">
-          <h2 class="section-title">Education</h2>
-          <h3>Bachelor of Science in Computer Science</h3>
-          <p>
-            California Polytechnic State University, San Luis Obispo | Expected
-            Graduation June 2026
-          </p>
-        </section>
-
-        <section class="section">
-          <h2 class="section-title">Experience</h2>
-          <h3>Integem Intern</h3>
-          <p>Integem Inc. | June 2024 - August 2024</p>
-          <p>
-            As an Integem instructor, I taught students from grades 6-12 to
-            design and create augmented reality projects using the Holographic
-            AR platform. I guided them through coding, design, and storytelling
-            while fostering creativity and problem-solving. I provided
-            personalized feedback to support student progress and encouraged
-            hands-on learning through real-world AR applications.
-          </p>
-        </section>
-
-        <section class="section">
-          <h2 class="section-title">Skills</h2>
-          <ul>
-            <li>Python</li>
-            <li>Java</li>
-            <li>C</li>
-            <li>HTML</li>
-            <li>Microsoft Office</li>
-          </ul>
-        </section>
-        <section class="section">
-          <h2 class="section-title">Projects</h2>
-          <h4>Virtual World</h4>
-          <p>
-            Developed a Java-based application with interactive gameplay,
-            featuring graphical interfaces with characters and environmental
-            elements, supported by Object-Oriented Programming and A-star
-            pathfinding.
-          </p>
-          <h4>Tetris</h4>
-          <p>
-            Developed a Tetris game using Python and the Pygame library. The
-            game includes all core Tetris mechanics, such as moving and rotating
-            blocks, clearing lines, and scoring. The grid is represented as a 2D
-            array, with each block’s position and rotation tracked within the
-            game logic.
-          </p>
-        </section>
-
-        <section class="section">
-          <h1 class="section-title">Coursework</h1>
-          <ul>
-            <li>Fundamentals of Computer Science</li>
-            <li>Data Structures</li>
-            <li>Project Based ObjectOriented Programming & Design</li>
-            <li>Discrete Structures</li>
-            <li>Introduction to Computer Organization</li>
-            <li>Design & Analysis of Algorithms</li>
-            <li>Systems Programming</li>
-          </ul>
-        </section>
+      <div class="resume-image">
+        <!-- Link to the PDF of the resume -->
+        <a href="jonathanlauresume.pdf" target="_blank">
+          <!-- Image of the resume, smaller version -->
+          <img src="resumesc.png" alt="Jonathan Lau's Resume" />
+        </a>
       </div>
     </main>
     <footer class="footer">
