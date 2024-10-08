@@ -2,7 +2,7 @@
   /* Updated color variables for a more professional look */
   --cg-black: rgb(34, 34, 34); /* Darker shade of black */
   --cg-blue: rgb(45, 105, 185); /* Muted professional blue */
-  --cg-grey: rgb(128, 128, 128); /* Light grey for background */
+  --cg-grey: rgb(232, 232, 232); /* Light grey for background */
   --cg-white: rgb(255, 255, 255); /* Pure white */
 }
 html {
@@ -38,7 +38,7 @@ body {
   font-family: monospace;
 }
 
-.intro {
+.intro{
   display: flex;
   justify-content: center;
   align-items: center;
