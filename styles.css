@@ -27,8 +27,8 @@ body {
   background: linear-gradient(
     45deg,
     var(--cg-blue),
-    var(--cg-grey),
-    var(--cg-black)
+    var(--cg-white),
+    var(--cg-grey)
   );
   background-size: 400% 400%;
   animation: gradientAnimation 10s ease infinite;
