@@ -1,9 +1,9 @@
 :root {
-  /* Updated color variables for a more professional look */
-  --cg-black: rgb(34, 34, 34); /* Darker shade of black */
-  --cg-blue: rgb(45, 105, 185); /* Muted professional blue */
-  --cg-grey: rgb(236, 240, 241); /* Light grey for background */
-  --cg-white: rgb(255, 255, 255); /* Pure white */
+  --cg-black: rgb(34, 34, 34); 
+  --cg-blue: rgb(45, 105, 185);
+  --cg-grey: rgb(236, 240, 241);
+  --cg-white: rgb(255, 255, 255); 
+  --cg-pearl: rgb(225, 230, 244);
 }
 
 html {
@@ -27,7 +27,7 @@ body {
   background: linear-gradient(
     45deg,
     var(--cg-blue),
-    var(--cg-white),
+    var(--cg-pearl),
     var(--cg-grey)
   );
   background-size: 400% 400%;
