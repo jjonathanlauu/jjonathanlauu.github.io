@@ -58,8 +58,7 @@ html[data-theme="light"] {
 }
 
 /* ====== Base ====== */
-/* Make 100% zoom look like your 75% by reducing the type scale.
-   Tweak 12px -> 13px if you want it a touch larger. */
+/* Local dev look (Live Server): ~75% feel by using a 12px root */
 html {
   font-size: 12px;
 }
@@ -196,7 +195,7 @@ img {
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 5rem 0 2.5rem; /* 80/40px */
+  padding: 5rem 0 2.5rem;
 }
 .hero-grid {
   display: grid;
@@ -271,16 +270,14 @@ img {
   color: #0b1220;
   box-shadow: var(--shadow);
 }
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-ghost:hover {
   transform: translateY(-1px);
 }
 .btn-ghost {
   background: var(--bg-elev);
   color: var(--text);
   border-color: transparent;
-}
-.btn-ghost:hover {
-  transform: translateY(-1px);
 }
 
 .tech-chips {
@@ -576,10 +573,26 @@ img {
   } /* 420px */
 }
 
-/* ===== Optional: Chromium-only 75% zoom (quick preview) ===== */
-/* Uncomment if you want the exact 75% look in Chrome/Edge without the font-size approach.
-html { zoom: .75; }
-@supports not (zoom: 1) {
-  body { transform: scale(.75); transform-origin: top left; width: calc(100% / .75); min-height: calc(100% / .75); overflow-x: hidden; }
+/* ===== Production-only 75% scale =====
+   Triggered by <html class="scale-75"> (add with a tiny script in your HTML).
+   Locally, you won't have the class, so your 12px base remains. */
+html.scale-75 {
+  font-size: 16px; /* neutral baseline; zoom -> ~12px effective */
+  zoom: 0.75; /* Chromium (crisp) */
 }
-*/
+
+/* Firefox/Safari fallback (no 'zoom' support) */
+@supports not (zoom: 1) {
+  html.scale-75,
+  html.scale-75 body {
+    height: 100%;
+  }
+
+  html.scale-75 body {
+    transform: scale(0.75);
+    transform-origin: top left;
+    width: calc(100% / 0.75); /* expand canvas so content fills viewport */
+    min-height: calc(100% / 0.75);
+    overflow-x: hidden; /* avoid horizontal scrollbars */
+  }
+}
