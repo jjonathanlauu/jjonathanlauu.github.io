@@ -1,44 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="auto">
   <head>
-    <title>My Personal Website</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resume — Jonathan Lau</title>
+    <meta name="description" content="Resume of Jonathan Lau" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <style>
-      .resume-image {
-        text-align: center; /* Centers the content horizontally */
-        margin: 20px 0; /* Adds some space above and below the image */
+      .resume-hero { margin-top: 24px; text-align: center; }
+      .resume-actions { display:flex; justify-content:center; margin: 16px 0 24px; }
+      .resume-frame {
+        background: var(--bg-elev);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        padding: clamp(10px, 2vw, 16px);
+        text-align: center;
       }
-
       .resume-image img {
-        width: 50%;
+        width: min(950px, 100%);
         height: auto;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        background: rgba(255,255,255,.02);
       }
     </style>
   </head>
-  <body>
-    <nav class="navbar">
-      <h1><a href="index.html">JL's website</a></h1>
-      <ul class="nav-list">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="resume.html">Resume</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-    <main>
-      <h1 class="page-title">Resume</h1>
 
-      <div class="resume-image">
-        <!-- Link to the PDF of the resume -->
-        <a href="jonathanlauresume.pdf" target="_blank">
-          <!-- Image of the resume, smaller version -->
-          <img src="resumesc.png" alt="Jonathan Lau's Resume" />
+  <body>
+    <!-- Top Nav -->
+    <header class="nav-wrap">
+      <nav class="navbar container" aria-label="Main">
+        <a class="brand" href="index.html" aria-label="Home">JL<span class="brand-dot"></span></a>
+
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a class="active" href="resume.html">Resume</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+              <span class="theme-icon"></span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container narrow">
+      <header class="resume-hero">
+        <h1 class="page-title">Resume</h1>
+      </header>
+
+      <div class="resume-actions">
+        <a class="btn btn-primary" href="jonathanlauresume.pdf" download>Download Resume</a>
+      </div>
+
+      <div class="resume-frame reveal">
+        <a class="resume-image" href="jonathanlauresume.pdf" target="_blank" rel="noopener" aria-label="Open resume PDF">
+          <img src="resumesc.png" alt="Resume — Jonathan Lau" />
         </a>
       </div>
     </main>
+
     <footer class="footer">
-      © 2024 My Personal Website | All Rights Reserved |
+      <div class="container">
+        <p>© <span id="year"></span> Jonathan Lau • All rights reserved</p>
+      </div>
     </footer>
+
+    <script>
+      // Year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Mobile nav
+      const toggle = document.querySelector('.nav-toggle');
+      const links  = document.querySelector('.nav-links');
+      if (toggle && links) {
+        toggle.addEventListener('click', () => {
+          const open = links.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+
+      // Theme toggle with system default
+      const saved = localStorage.getItem('theme');
+      if (saved) document.documentElement.dataset.theme = saved;
+      const themeBtn = document.getElementById('themeToggle');
+      if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+          const next = (document.documentElement.dataset.theme === 'dark') ? 'light'
+                     : (document.documentElement.dataset.theme === 'light') ? 'auto'
+                     : 'dark';
+          document.documentElement.dataset.theme = next;
+          localStorage.setItem('theme', next);
+        });
+      }
+
+      // Scroll reveal (respects reduced motion)
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+      }
+    </script>
   </body>
 </html>

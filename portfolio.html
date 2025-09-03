@@ -1,73 +1,251 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="auto">
   <head>
-    <title>My Personal Website</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects — Jonathan Lau</title>
+    <meta name="description" content="Projects by Jonathan Lau" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
+
   <body>
-    <nav class="navbar">
-      <h1><a href="index.html">JL's website</a></h1>
-      <ul class="nav-list">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="resume.html">Resume</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-    <main>
-      <h1 class="page-title">My Portfolio</h1>
+    <!-- Top Nav -->
+    <header class="nav-wrap">
+      <nav class="navbar container" aria-label="Main">
+        <a class="brand" href="index.html" aria-label="Home"
+          >JL<span class="brand-dot"></span
+        ></a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a class="active" href="portfolio.html">Portfolio</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li>
+            <button
+              class="theme-toggle"
+              id="themeToggle"
+              aria-label="Toggle dark mode"
+            >
+              <span class="theme-icon"></span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-      <!-- First project: Tetris -->
-      <div class="project">
-        <a href="index.html">
-          <img
-            src="mytetris.png"
-            alt="Screenshot of my personal project"
-            width="600"
-            height="750"
-          />
-        </a>
+    <main class="container">
+      <header class="portfolio-hero">
+        <h1 class="page-title" style="margin-top: 24px">Projects</h1>
+      </header>
 
-        <div class="project-details">
-          <p class="project-name"><strong>Tetris Project</strong></p>
-          <p class="project-description">
-            This is my take on Tetris. I first established the playing field by
-            creating the grid. Then, I implemented seven different blocks. I
-            also implemented the use of arrow keys to move and rotate the
-            pieces. This project was created using Python and the Pygame
-            library.
+      <!-- ===== Project Carousel ===== -->
+      <section class="project-carousel reveal" aria-label="Projects">
+        <div class="carousel-frame">
+          <a
+            id="projLink"
+            class="carousel-media"
+            href="https://restore.habitatslo.org/Auth/Login"
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              id="projImg"
+              src="restore.habitat.png"
+              alt="Habitat for Humanity portal"
+            />
+          </a>
+
+          <!-- Arrows -->
+          <button class="carousel-nav prev" aria-label="Previous project">
+            ‹
+          </button>
+          <button class="carousel-nav next" aria-label="Next project">›</button>
+
+          <!-- Dots -->
+          <div
+            class="carousel-dots"
+            role="tablist"
+            aria-label="Project selector"
+          >
+            <button
+              class="dot active"
+              aria-label="Habitat for Humanity"
+              aria-selected="true"
+            ></button>
+            <button
+              class="dot"
+              aria-label="PumPlanner"
+              aria-selected="false"
+            ></button>
+            <button
+              class="dot"
+              aria-label="LandLordFortress"
+              aria-selected="false"
+            ></button>
+          </div>
+        </div>
+
+        <div class="carousel-caption">
+          <h3 id="projTitle" class="project-title">
+            Habitat for Humanity — Donation & Pickup Portal
+          </h3>
+          <p id="projSummary" class="project-summary">
+            Team-built web portal for scheduling donation drop-offs and
+            coordinating with nonprofit staff.
           </p>
         </div>
-      </div>
-
-      <!-- New section: Virtual World -->
-      <div class="project">
-        <a href="index.html">
-          <img
-            src="virtualworldsc.png"
-            alt="Screenshot of my Virtual World project"
-            width="800"
-            height="450"
-          />
-        </a>
-
-        <div class="project-details">
-          <p class="project-name"><strong>Virtual World Project</strong></p>
-          <p class="project-description">
-            The Virtual World project is a Java-based application that creates
-            an interactive environment where users can explore and interact with
-            various elements. It includes character movement, object
-            interaction, and environmental features. I used Object-Oriented
-            Programming (OOP) principles to design and manage game elements, and
-            implemented pathfinding algorithms such as A* to guide NPCs around
-            obstacles.
-          </p>
-        </div>
-      </div>
+      </section>
     </main>
+
     <footer class="footer">
-      © 2024 My Personal Website | All Rights Reserved |
+      <div class="container">
+        <p>© <span id="year"></span> Jonathan Lau • All rights reserved</p>
+      </div>
     </footer>
+
+    <script>
+      // Year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Theme toggle
+      const saved = localStorage.getItem("theme");
+      if (saved) document.documentElement.dataset.theme = saved;
+      const themeBtn = document.getElementById("themeToggle");
+      if (themeBtn) {
+        themeBtn.addEventListener("click", () => {
+          const next =
+            document.documentElement.dataset.theme === "dark"
+              ? "light"
+              : document.documentElement.dataset.theme === "light"
+                ? "auto"
+                : "dark";
+          document.documentElement.dataset.theme = next;
+          localStorage.setItem("theme", next);
+        });
+      }
+
+      // Reveal animation
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) e.target.classList.add("in");
+            });
+          },
+          { threshold: 0.15 }
+        );
+        document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+      }
+
+      // ===== Carousel logic =====
+      const slides = [
+        {
+          title: "Habitat for Humanity — Donation & Pickup Portal",
+          summary:
+            "Team-built web portal for scheduling donation drop-offs and coordinating with nonprofit staff.",
+          img: "images/restore.habitat.png",
+          alt: "Habitat for Humanity portal",
+          link: "https://restore.habitatslo.org/Auth/Login",
+        },
+        {
+          title: "PumPlanner",
+          summary:
+            "Workout tracking web app for college students—set goals and visualize progress.",
+          img: "images/PumpPlanner.png",
+          alt: "PumPlanner workout tracking web app",
+          link: "#", // change to live or repo when ready
+        },
+        {
+          title: "Land Lord Fortress",
+          summary:
+            "A responsive publishing website featuring a book showcase, threaded community forum, and a custom contact form integrated with Formspree for live submissions.",
+          img: "images/landlordfortress.png",
+          alt: "LandLord Fortress",
+          link: "https://landlordfortress.com/",
+        },
+      ];
+
+      let idx = 0;
+      const imgEl = document.getElementById("projImg");
+      const linkEl = document.getElementById("projLink");
+      const titleEl = document.getElementById("projTitle");
+      const sumEl = document.getElementById("projSummary");
+      const dots = document.querySelectorAll(".carousel-dots .dot");
+
+      function render(i) {
+        const s = slides[i];
+        imgEl.src = s.img;
+        imgEl.alt = s.alt;
+        linkEl.href = s.link;
+        titleEl.textContent = s.title;
+        sumEl.textContent = s.summary;
+        dots.forEach((d, di) => {
+          d.classList.toggle("active", di === i);
+          d.setAttribute("aria-selected", di === i ? "true" : "false");
+        });
+      }
+
+      document
+        .querySelector(".carousel-nav.next")
+        .addEventListener("click", () => {
+          idx = (idx + 1) % slides.length;
+          render(idx);
+        });
+      document
+        .querySelector(".carousel-nav.prev")
+        .addEventListener("click", () => {
+          idx = (idx - 1 + slides.length) % slides.length;
+          render(idx);
+        });
+      dots.forEach((d, di) =>
+        d.addEventListener("click", () => {
+          idx = di;
+          render(idx);
+        })
+      );
+
+      // Keyboard arrows
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") {
+          idx = (idx + 1) % slides.length;
+          render(idx);
+        }
+        if (e.key === "ArrowLeft") {
+          idx = (idx - 1 + slides.length) % slides.length;
+          render(idx);
+        }
+      });
+
+      // Touch swipe
+      (function addSwipe(el) {
+        let x0 = null;
+        el.addEventListener("touchstart", (e) => (x0 = e.touches[0].clientX), {
+          passive: true,
+        });
+        el.addEventListener(
+          "touchend",
+          (e) => {
+            if (x0 === null) return;
+            const dx = e.changedTouches[0].clientX - x0;
+            if (Math.abs(dx) > 40) {
+              idx =
+                dx < 0
+                  ? (idx + 1) % slides.length
+                  : (idx - 1 + slides.length) % slides.length;
+              render(idx);
+            }
+            x0 = null;
+          },
+          { passive: true }
+        );
+      })(document.querySelector(".carousel-frame"));
+
+      // Initial render
+      render(idx);
+    </script>
   </body>
 </html>
