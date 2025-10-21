@@ -121,18 +121,20 @@ img {
   height: 4rem; /* 64px */
 }
 .brand {
-  font-family: var(--logo-font);
+  font-family: "Orbitron", sans-serif;
   font-weight: 800;
-  letter-spacing: 0.0625rem;
-  text-decoration: none;
-  color: var(--text);
-  font-size: 1.6rem;
+  letter-spacing: 0.15rem;
+  font-size: 2rem;
   text-transform: uppercase;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 20px rgba(122, 162, 255, 0.4);
 }
 .brand-dot {
   color: var(--accent);
+  text-shadow: 0 0 8px var(--accent);
 }
-
 .nav-links {
   display: flex;
   align-items: center;
